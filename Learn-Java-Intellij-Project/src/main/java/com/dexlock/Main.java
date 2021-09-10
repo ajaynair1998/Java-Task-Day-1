@@ -24,8 +24,8 @@ class ReadFileAndDoOperations {
     String currentPath;
     File inputFile;
     Scanner input;
-    List<String> wordsFromFile = new ArrayList<String>();
-    Hashtable<String, Integer> occurrences = new Hashtable<String, Integer>();
+    List<String> wordsFromFile = new ArrayList<>();
+    Hashtable<String, Integer> occurrences = new Hashtable<>();
 
     //    constructor
     public ReadFileAndDoOperations(String s) {
@@ -50,8 +50,8 @@ class ReadFileAndDoOperations {
     //    Create a Set from the list we created
     public void numberOfUniqueWords() {
 
-        Set<String> uniqueWords = new HashSet<String>(this.wordsFromFile);
-        System.out.println("There are " + uniqueWords.size() + " unique words");
+        Set<String> uniqueWords = new HashSet<>(this.wordsFromFile);
+        System.out.println("There are " + uniqueWords.size() + " unique words" + "\n");
 
 
     }
@@ -68,10 +68,7 @@ class ReadFileAndDoOperations {
         });
 
         // Print each key and its values
-        occurrences.forEach((key, value) ->
-        {
-            System.out.println(key + " ==> " + value + " time" + "\n");
-        });
+        occurrences.forEach((key, value) -> System.out.println(key + " -> " + value + " time" + "\n"));
 
 
     }
