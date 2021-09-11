@@ -89,6 +89,7 @@ public class connectToDb {
 
             while (result.next()) {
                 numberOfResults = result.getInt("TOTAL");
+                System.out.println(result.getInt("TOTAL"));
 
             }
 

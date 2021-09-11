@@ -62,6 +62,9 @@ public class Main {
 
 
         while (runAgain) {
+
+
+
             System.out.println("\n" + listOfOperations.get(0));
 
             System.out.println("\n" + listOfOperations.get(1));
@@ -73,6 +76,9 @@ public class Main {
             System.out.println("\n" + listOfOperations.get(4));
 
             input = scanner.nextLine();
+            for(int i=0;i<30;i++){
+                System.out.println();
+            }
 
             switch (input) {
                 case "exit":
