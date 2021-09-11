@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 
 
-
 public class connectToDb {
     Connection conn;
 
@@ -32,8 +31,6 @@ public class connectToDb {
     }
 
     public void addStudent(Integer rollNumber, String name, Integer mark, String className) {
-
-
 
 
         String SQL = "INSERT INTO students(roll_number,name,class_name,mark) VALUES(?,?,?,?)";
@@ -75,36 +72,34 @@ public class connectToDb {
         }
     }
 
-    public boolean checkIfStudentAlreadyExist(Integer roll_number,String class_name){
-        String SQL="SELECT * FROM students WHERE roll_number = ?  AND class_name = ?";
+    public boolean checkIfStudentAlreadyExist(Integer roll_number, String class_name) {
+        String SQL = "SELECT COUNT(*) AS TOTAL FROM students WHERE (roll_number = ?  AND class_name = ?)";
+        int numberOfResults = 0;
 
-        try{
-            PreparedStatement statement=conn.prepareStatement(SQL);
+        try {
+            PreparedStatement statement = conn.prepareStatement(SQL);
 
 
-            statement.setInt(1,roll_number);
-            statement.setString(2,class_name);
+            statement.setInt(1, roll_number);
+            statement.setString(2, class_name);
 
             System.out.println(statement);
-            ResultSet result= statement.executeQuery();
+            ResultSet result = statement.executeQuery();
 
-//            go to the last position of the result set to get the maximum index
-            while(result.next()){
-//               keep iterating
+            while (result.next()) {
+                numberOfResults = result.getInt("TOTAL");
             }
 
 
-            int lengthOfResult=result.getRow();
-            System.out.println(lengthOfResult);
-
-
-
-
-        }
-        catch(SQLException  err){
+        } catch (SQLException err) {
             System.out.println(err.getMessage());
         }
-        return true;
+
+        if (numberOfResults > 0) {
+
+            return true;
+        }
+        return false;
     }
 
 
