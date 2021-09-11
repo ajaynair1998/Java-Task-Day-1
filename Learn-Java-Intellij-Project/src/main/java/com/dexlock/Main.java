@@ -16,7 +16,7 @@ public class Main {
         connectToDb studentDatabase = new connectToDb();
         studentDatabase.addStudent(4, "new3", 35, "A");
         studentDatabase.listThreeTopStudents();
-
+        studentDatabase.checkIfStudentAlreadyExist(9,"A");
     }
 
     public static void switchBetweenTasks() {

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 
 
+
 public class connectToDb {
     Connection conn;
 
@@ -73,5 +74,38 @@ public class connectToDb {
             System.out.println(err.getMessage());
         }
     }
+
+    public boolean checkIfStudentAlreadyExist(Integer roll_number,String class_name){
+        String SQL="SELECT * FROM students WHERE roll_number = ?  AND class_name = ?";
+
+        try{
+            PreparedStatement statement=conn.prepareStatement(SQL);
+
+
+            statement.setInt(1,roll_number);
+            statement.setString(2,class_name);
+
+            System.out.println(statement);
+            ResultSet result= statement.executeQuery();
+
+//            go to the last position of the result set to get the maximum index
+            while(result.next()){
+//               keep iterating
+            }
+
+
+            int lengthOfResult=result.getRow();
+            System.out.println(lengthOfResult);
+
+
+
+
+        }
+        catch(SQLException  err){
+            System.out.println(err.getMessage());
+        }
+        return true;
+    }
+
 
 }
