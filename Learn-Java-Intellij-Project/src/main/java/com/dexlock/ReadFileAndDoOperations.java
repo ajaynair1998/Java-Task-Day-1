@@ -52,7 +52,8 @@ public class ReadFileAndDoOperations {
         });
 
         // Print each key and its values
-        occurrences.forEach((key, value) -> System.out.println(key + " -> " + value + " time" + "\n"));
+        occurrences.forEach((key, value) -> System.out.printf("%-20s \t\t %2d\n",
+               key,value));
 
 
     }
