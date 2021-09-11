@@ -1,42 +1,114 @@
 package com.dexlock;
 
+import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.io.IOException;
+
 
 public class Main {
     public static void main(String[] args) {
         ReadFileAndDoOperations dataFromFile = new ReadFileAndDoOperations("inputFile.txt");
 
-        //TASK ONE
-        dataFromFile.numberOfUniqueWords();
+        System.out.println("Enter the Task ");
+        Scanner scanner = new Scanner(System.in);
 
-        //TASK TWO
-        dataFromFile.numberOfOccurrencesOfEachWord();
+        switch (scanner.nextLine()) {
+            case "1":
+                dataFromFile.numberOfUniqueWords();
+                break;
+            case "2":
+                dataFromFile.numberOfOccurrencesOfEachWord();
+                break;
+            case "3":
+                actionsOnStudentDatabase();
+                break;
+        }
+
+
+    }
+
+    public static void actionsOnStudentDatabase() {
+
+        boolean runAgain = true;
+        Scanner scanner = new Scanner(System.in);
+        String input;
+
+//        Student variables
+        String className, studentName;
+        int rollNumber, marks;
 
         connectToDb studentDatabase = new connectToDb();
-        studentDatabase.addStudent(4, "new3", 35, "A");
-        studentDatabase.listThreeTopStudents();
-        studentDatabase.checkIfStudentAlreadyExist(4,"A");
-    }
 
-    public static void switchBetweenTasks() {
-        Scanner scannerObject = new Scanner(System.in);
+        ArrayList<String> listOfOperations = new ArrayList<String>(
+                Arrays.asList(
+                        "Enter the Operation",
+                        "1:Insert a new student:",
+                        "2:List the students:",
+                        "3:List 3 students with top marks:",
+                        "4:Exit"
+                )
+        );
 
-        try {
-            while (true) {
-                Runtime.getRuntime().exec("clear");
+        ArrayList<String> listOfOperationsForStudent = new ArrayList<String>(
+                Arrays.asList(
+                        "Enter The Student's Name :",
+                        "Enter the student's Roll No:",
+                        "Enter the class:",
+                        "Enter the marks"
+                )
+        );
 
-                System.out.println("Select the task to run \n Press 0 to exit");
 
-                int taskNumber = scannerObject.nextInt();
-                System.out.println(taskNumber);
+        while (runAgain) {
+            System.out.println("\n" + listOfOperations.get(0));
+
+            System.out.println("\n" + listOfOperations.get(1));
+
+            System.out.println("\n" + listOfOperations.get(2));
+
+            System.out.println("\n" + listOfOperations.get(3));
+
+            System.out.println("\n" + listOfOperations.get(4));
+
+            input = scanner.nextLine();
+
+            switch (input) {
+                case "exit":
+                    runAgain = false;
+                    break;
+
+                case "1":
+                    System.out.println(listOfOperationsForStudent.get(0));
+                    studentName = scanner.nextLine();
+                    System.out.println(listOfOperationsForStudent.get(1));
+                    rollNumber = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println(listOfOperationsForStudent.get(2));
+                    className = scanner.nextLine();
+                    System.out.println(listOfOperationsForStudent.get(3));
+                    marks = scanner.nextInt();
+
+                    if (!studentDatabase.checkIfStudentAlreadyExist(rollNumber, className)) {
+                        studentDatabase.addStudent(rollNumber, studentName, marks, className);
+                    } else {
+                        System.out.println("The student already exists");
+                    }
+                    break;
+                case "2":
+                    studentDatabase.listAllStudents();
+                    break;
+                case "3":
+                    studentDatabase.listThreeTopStudents();
+                    break;
+
 
             }
-        } catch (IOException err) {
-            err.printStackTrace();
-        }
-    }
 
+        }
+
+    }
 }
 
 
