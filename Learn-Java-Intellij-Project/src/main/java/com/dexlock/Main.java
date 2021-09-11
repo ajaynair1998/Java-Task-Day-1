@@ -13,7 +13,7 @@ public class Main {
         //TASK TWO
         dataFromFile.numberOfOccurrencesOfEachWord();
 
-        switchBetweenTasks();
+        connectToDb connect=new connectToDb();
     }
 
     public static void switchBetweenTasks() {
