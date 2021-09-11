@@ -16,9 +16,8 @@ public class Main {
         switchBetweenTasks();
     }
 
-    public static void switchBetweenTasks()
-    {
-        Scanner scannerObject= new Scanner(System.in);
+    public static void switchBetweenTasks() {
+        Scanner scannerObject = new Scanner(System.in);
 
         try {
             while (true) {
@@ -30,9 +29,7 @@ public class Main {
                 System.out.println(taskNumber);
 
             }
-        }
-        catch(IOException err )
-        {
+        } catch (IOException err) {
             err.printStackTrace();
         }
     }
