@@ -13,8 +13,9 @@ public class Main {
         //TASK TWO
         dataFromFile.numberOfOccurrencesOfEachWord();
 
-        connectToDb connect=new connectToDb();
-        connect.addStudent(1,"ajay",32,"A");
+        connectToDb studentDatabase = new connectToDb();
+        studentDatabase.addStudent(4, "new3", 35, "A");
+        studentDatabase.listThreeTopStudents();
 
     }
 

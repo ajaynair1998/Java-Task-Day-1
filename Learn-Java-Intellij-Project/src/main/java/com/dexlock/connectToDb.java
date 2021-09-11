@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.ResultSet;
 
 
 public class connectToDb {
@@ -29,6 +31,10 @@ public class connectToDb {
     }
 
     public void addStudent(Integer rollNumber, String name, Integer mark, String className) {
+
+
+
+
         String SQL = "INSERT INTO students(roll_number,name,class_name,mark) VALUES(?,?,?,?)";
 
         try {
@@ -50,8 +56,22 @@ public class connectToDb {
         }
     }
 
-    public void listStudents(){
-        
+    public void listThreeTopStudents() {
+        String SQL = "SELECT * from students ORDER BY mark DESC LIMIT 3 ";
+
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(SQL);
+
+            System.out.println("The Top 3 Students are" + "\n");
+            while (rs.next()) {
+                System.out.println(rs.getString("name") + "\t" + rs.getString("class_name") + "\t" + rs.getInt("mark") + "\t" + rs.getInt("roll_number"));
+            }
+
+
+        } catch (SQLException err) {
+            System.out.println(err.getMessage());
+        }
     }
 
 }
