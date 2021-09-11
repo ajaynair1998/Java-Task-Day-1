@@ -14,6 +14,8 @@ public class Main {
         dataFromFile.numberOfOccurrencesOfEachWord();
 
         connectToDb connect=new connectToDb();
+        connect.addStudent(1,"ajay",32,"A");
+
     }
 
     public static void switchBetweenTasks() {
