@@ -5,14 +5,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+
 import java.sql.ResultSet;
 import java.io.IOException;
 
 
-public class connectToDb {
+public class ConnectToDb {
     Connection conn;
 
-    public connectToDb() {
+    public ConnectToDb() {
         conn = null;
         try {
             Class.forName("org.sqlite.JDBC");

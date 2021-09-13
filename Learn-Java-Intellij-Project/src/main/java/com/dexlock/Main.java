@@ -39,7 +39,7 @@ public class Main {
         String className, studentName;
         int rollNumber, marks;
 
-        connectToDb studentDatabase = new connectToDb();
+        ConnectToDb studentDatabase = new ConnectToDb();
 
         ArrayList<String> listOfOperations = new ArrayList<String>(
                 Arrays.asList(
@@ -64,7 +64,6 @@ public class Main {
         while (runAgain) {
 
 
-
             System.out.println("\n" + listOfOperations.get(0));
 
             System.out.println("\n" + listOfOperations.get(1));
@@ -76,14 +75,15 @@ public class Main {
             System.out.println("\n" + listOfOperations.get(4));
 
             input = scanner.nextLine();
-            for(int i=0;i<30;i++){
+            for (int i = 0; i < 30; i++) {
                 System.out.println();
             }
 
             switch (input) {
-                case "exit":
+                case "4":
                     runAgain = false;
                     break;
+
 
                 case "1":
                     System.out.println(listOfOperationsForStudent.get(0));
@@ -95,9 +95,13 @@ public class Main {
                     className = scanner.nextLine();
                     System.out.println(listOfOperationsForStudent.get(3));
                     marks = scanner.nextInt();
-
-                    if (!studentDatabase.checkIfStudentAlreadyExist(rollNumber, className)) {
-                        studentDatabase.addStudent(rollNumber, studentName, marks, className);
+                    
+//                    Create a Student object with the inputs
+                    Student newStudent= new Student(studentName,rollNumber,className,marks);
+                            
+                    if (!studentDatabase.checkIfStudentAlreadyExist(newStudent.getRollNumber(), newStudent.getClassName())) {
+                        studentDatabase.addStudent(newStudent.getRollNumber(), newStudent.getName(), newStudent.getMarks(),
+                                newStudent.getClassName());
                     } else {
                         System.out.println("The student already exists");
                     }
@@ -116,7 +120,6 @@ public class Main {
 
     }
 }
-
 
 
 
